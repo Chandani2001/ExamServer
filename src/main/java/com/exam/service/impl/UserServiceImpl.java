@@ -1,6 +1,7 @@
 package com.exam.service.impl;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
@@ -83,28 +84,44 @@ public class UserServiceImpl implements UserService {
 	}
 
 	// update
-	@Override
-	public User updateUser(User user) {
-		return this.userRepository.save(user);
-	}
-
 //	@Override
-//	public User updateUser(User user,Long userId) {
-//		User users=null;
-//		users=(User)this.userRepository.findById(userId).get();//.orElseThrow(()-> new ResourceNotFoundException("User" ,"Id",userId));
-//		users.setFirstName(user.getFirstName());
-//		users.setLastName(user.getLastName());
-//		users.setUsername(user.getUsername());
-//		users.setPassword(user.getPassword());
-//		users.setEmail(user.getEmail());
-//		users.setEnabled(true);
-//		users.setPhone(user.getPhone());
-//		users.setProfile(user.getProfile());
-//		this.userRepository.save(users);
-//		//return "Data Updated SuccessFully";
-//		return users;
-////		User updateUser=this.userRepository.save(users);
-////		return this.userToDto(updatedUser);
+//	public User updateUser(User user,int userId) {
+//		list= list.stream().map(users->{
+//			if(users.getId()==userId) {
+//				users.setFirstName(user.getFirstName());
+//				users.setLastName(user.getLastName());
+//				users.setUsername(user.getUsername());
+//				users.setPassword(user.getPassword());
+//				users.setEmail(user.getEmail());
+//				users.setEnabled(true);
+//				users.setPhone(user.getPhone());
+//				users.setProfile(user.getProfile());
+//				//this.userRepository.save(users);
+//			}
+//			return users;
+//			}).collect(Collectors.toList());
+//		
 //	}
+
+	@Override
+	public User updateUser(User user,Long userId) {
+		User users=null;
+		users=(User)this.userRepository.findById(userId).get();//.orElseThrow(()-> new ResourceNotFoundException("User" ,"Id",userId));
+		users.setFirstName(user.getFirstName());
+		users.setLastName(user.getLastName());
+		users.setUsername(user.getUsername());
+		users.setPassword(user.getPassword());
+		users.setEmail(user.getEmail());
+		users.setEnabled(true);
+		users.setPhone(user.getPhone());
+		users.setProfile(user.getProfile());
+		this.userRepository.save(users);
+		//return "Data Updated SuccessFully";
+		return users;
+		//User updateUser=this.userRepository.save(users);
+		//Object updatedUser;
+		//return this.userToDto(updatedUser);
+	
+	}
 
 }

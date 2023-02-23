@@ -83,13 +83,20 @@ public class UserController {
 
 		return "Wrong Id";
 
+}
+	//update user details
+	@PutMapping("/update/{userId}")
+	public User updateUser(@RequestBody User user,@PathVariable("userId") Long userId) {
+		 this.userService.updateUser(user, userId);
+		 return user;
 	}
+	
 
 	// update user details
-	@PutMapping("/")
-	public User updateUser(@RequestBody User user) 
-	{
-        return this.userService.updateUser(user);
-		// return "Your record updated Successfully ";
-	}
+//	@PutMapping("/")
+//	public User updateUser(@RequestBody User user) 
+//	{
+//        return this.userService.updateUser(user);
+//		// return "Your record updated Successfully ";
+//	}
 }

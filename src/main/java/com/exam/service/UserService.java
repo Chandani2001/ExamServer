@@ -22,7 +22,9 @@ public interface UserService {
 	public void deleteUser(Long userId);
 	
 	//update user value
-	public User updateUser(User user);
+	//public User updateUser(User user);
 
 	public UserDetails loadUserByUsername(String username);
+
+	public User updateUser(User user, Long userId);
 }
